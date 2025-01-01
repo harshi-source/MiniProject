@@ -16,23 +16,29 @@ public class TopDealsPageStepDefinitions {
     public String topDealsPageProductName;
     public String landingPageProductName;
     Test test;
+    //Single Responsibility Principle
+    //loosely coupled
     public TopDealsPageStepDefinitions(Test test) {
         this.test = test;
     }
        @Then("user searched for {string} short name in Top Deals page")
    public void user_searched_for_same_short_name_in_offers_page(String shortName) {
-        test.driver.findElement(By.linkText("Top Deals")).click();
-        Set<String> windowHandles = test.driver.getWindowHandles();
-       Iterator<String> it = windowHandles.iterator();
-        String parentWindow = it.next();
-        String childWindow = it.next();
-        test.driver.switchTo().window(childWindow);
+           switchToTopDealsPage();
        WebElement topDealsSearchBox= test.driver.findElement(By.xpath("//input[@id='search-field']"));
         topDealsSearchBox.sendKeys(shortName);
         topDealsPageProductName= test.driver.findElement(By.xpath("//td[text()='Tomato']")).getText();
         System.out.println(topDealsPageProductName);
 
    }
+
+    public void switchToTopDealsPage() {
+        test.driver.findElement(By.linkText("Top Deals")).click();
+        Set<String> windowHandles = test.driver.getWindowHandles();
+        Iterator<String> it = windowHandles.iterator();
+        String parentWindow = it.next();
+        String childWindow = it.next();
+        test.driver.switchTo().window(childWindow);
+    }
 
 
     @And("validate product name in the Top Deals page matches with the Landing page")
