@@ -6,6 +6,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import pageObjects.LandingPage;
+//import pageObjects.PageObjectManager;
+import pageObjects.TopDealsPage;
 import utils.Test;
 
 import java.util.Iterator;
@@ -16,14 +19,19 @@ public class TopDealsPageStepDefinitions {
     public String topDealsPageProductName;
     public String landingPageProductName;
     Test test;
+    //PageObjectManager pageObjectManager;
     //Single Responsibility Principle
     //loosely coupled
     public TopDealsPageStepDefinitions(Test test) {
+
         this.test = test;
     }
        @Then("user searched for {string} short name in Top Deals page")
    public void user_searched_for_same_short_name_in_offers_page(String shortName) {
            switchToTopDealsPage();
+           TopDealsPage topDealsPage=new TopDealsPage(test.driver);
+          // topDealsPage.searchItem(shortName);
+           topDealsPageProductName=topDealsPage.getProductName();
        WebElement topDealsSearchBox= test.driver.findElement(By.xpath("//input[@id='search-field']"));
         topDealsSearchBox.sendKeys(shortName);
         topDealsPageProductName= test.driver.findElement(By.xpath("//td[text()='Tomato']")).getText();
@@ -33,11 +41,15 @@ public class TopDealsPageStepDefinitions {
 
     public void switchToTopDealsPage() {
         test.driver.findElement(By.linkText("Top Deals")).click();
+        LandingPage landingPage=new LandingPage(test.driver);
+        //LandingPage landingPage= test.pageObjectManager.getLandingPage();
+       landingPage.selectTopDeals();
         Set<String> windowHandles = test.driver.getWindowHandles();
         Iterator<String> it = windowHandles.iterator();
         String parentWindow = it.next();
         String childWindow = it.next();
         test.driver.switchTo().window(childWindow);
+        //test.genericUtils.switchWindow();
     }
 
 
