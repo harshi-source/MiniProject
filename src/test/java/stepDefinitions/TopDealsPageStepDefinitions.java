@@ -27,29 +27,31 @@ public class TopDealsPageStepDefinitions {
         this.test = test;
     }
        @Then("user searched for {string} short name in Top Deals page")
-   public void user_searched_for_same_short_name_in_offers_page(String shortName) {
+   public void user_searched_for_same_short_name_in_offers_page(String shortName) throws InterruptedException {
            switchToTopDealsPage();
-           TopDealsPage topDealsPage=new TopDealsPage(test.driver);
-          // topDealsPage.searchItem(shortName);
+           //TopDealsPage topDealsPage=new TopDealsPage(test.driver);
+           TopDealsPage topDealsPage= test.pageObjectManager.topDealsPage();
+           topDealsPage.searchItem(shortName);
+           Thread.sleep(2000);
            topDealsPageProductName=topDealsPage.getProductName();
-       WebElement topDealsSearchBox= test.driver.findElement(By.xpath("//input[@id='search-field']"));
-        topDealsSearchBox.sendKeys(shortName);
-        topDealsPageProductName= test.driver.findElement(By.xpath("//td[text()='Tomato']")).getText();
+       //WebElement topDealsSearchBox= test.driver.findElement(By.xpath("//input[@id='search-field']"));
+        //topDealsSearchBox.sendKeys(shortName);
+        //topDealsPageProductName= test.driver.findElement(By.xpath("//td[text()='Tomato']")).getText();
         System.out.println(topDealsPageProductName);
 
    }
 
     public void switchToTopDealsPage() {
-        test.driver.findElement(By.linkText("Top Deals")).click();
-        LandingPage landingPage=new LandingPage(test.driver);
-        //LandingPage landingPage= test.pageObjectManager.getLandingPage();
+       // test.driver.findElement(By.linkText("Top Deals")).click();
+        //LandingPage landingPage=new LandingPage(test.driver);
+        LandingPage landingPage= test.pageObjectManager.getLandingPage();
        landingPage.selectTopDeals();
-        Set<String> windowHandles = test.driver.getWindowHandles();
-        Iterator<String> it = windowHandles.iterator();
-        String parentWindow = it.next();
-        String childWindow = it.next();
-        test.driver.switchTo().window(childWindow);
-        //test.genericUtils.switchWindow();
+//        Set<String> windowHandles = test.driver.getWindowHandles();
+//        Iterator<String> it = windowHandles.iterator();
+//        String parentWindow = it.next();
+//        String childWindow = it.next();
+//        test.driver.switchTo().window(childWindow);
+        test.genericUtils.switchWindow();
     }
 
 

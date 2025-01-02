@@ -8,8 +8,9 @@ public class TopDealsPage {
     public TopDealsPage(WebDriver driver){
         this.driver=driver;
     }
-    private By search = By.cssSelector("input.search-keyword");
-    private By productName=By.xpath("//td[text()='Tomato']");
+    By search = By.xpath("//input[@id='search-field']"); // Replace with the correct selector.
+
+    By productName=By.xpath("//td[text()='Tomato']");
     public void searchItem(String name){
         driver.findElement(search).sendKeys(name);
     }
