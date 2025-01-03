@@ -1,3 +1,4 @@
+@searchItem
 Feature: Search and place the order for products
   Scenario Outline: Product search in both home and offers page
     Given user is on the GreenKart Landing page

@@ -8,6 +8,7 @@ public class PageObjectManager {
     public LandingPage landingPage;
     public WebDriver driver;
     public TopDealsPage topDealsPage;
+    public CheckOutPage checkOutPage;
     public PageObjectManager(WebDriver driver){
         this.driver=driver;
     }
@@ -18,5 +19,9 @@ public class PageObjectManager {
     public TopDealsPage topDealsPage(){
         topDealsPage=new TopDealsPage(driver);
         return topDealsPage;
+    }
+    public CheckOutPage getCheckOutPage(){
+        checkOutPage=new CheckOutPage(driver);
+        return checkOutPage;
     }
 }
