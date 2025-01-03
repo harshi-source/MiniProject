@@ -26,7 +26,7 @@ public class TopDealsPageStepDefinitions {
 
         this.test = test;
     }
-       @Then("user searched for {string} short name in Top Deals page")
+       @Then("^user searched for (.+) short name in Top Deals page$")
    public void user_searched_for_same_short_name_in_offers_page(String shortName) throws InterruptedException {
            switchToTopDealsPage();
            //TopDealsPage topDealsPage=new TopDealsPage(test.driver);

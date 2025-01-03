@@ -8,10 +8,10 @@ public class LandingPage {
     public LandingPage(WebDriver driver){
         this.driver=driver;
     }
-    By search = By.xpath("//input[@type='search']");// Replace with the correct selector.
+    private By search = By.xpath("//input[@type='search']");// Replace with the correct selector.
 
-    By productName=By.cssSelector("h4.product-name");
-    By topDeals= By.linkText("Top Deals");
+    private By productName=By.cssSelector("h4.product-name");
+    private By topDeals= By.linkText("Top Deals");
     public void searchItem(String name){
         driver.findElement(search).sendKeys(name);
     }
