@@ -7,5 +7,4 @@ Feature: Search and place the order for products
     And validate product name in the Top Deals page matches with the Landing page
     Examples:
       |Name  |
-      |Tom   |
-      |Str  |
+      |Beet   |

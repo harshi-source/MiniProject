@@ -25,7 +25,7 @@ public class Base {
             //driver.get("https://rahulshettyacademy.com/seleniumPractise/#/");
             if(prop.getProperty("browser").equalsIgnoreCase("chrome")){
                 driver= new ChromeDriver();
-                driver.manage().window().maximize();
+                //driver.manage().window().maximize();
 
 
             }
@@ -35,7 +35,7 @@ public class Base {
 //
 //
 //            }
-            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+            //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
             driver.get(url);
 
         }
