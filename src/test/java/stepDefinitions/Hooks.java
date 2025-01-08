@@ -56,6 +56,7 @@ public void addScreenshot(Scenario scenario) throws IOException {
 
         // Attach the screenshot to the scenario (relative path for Spark report)
         scenario.attach(FileUtils.readFileToByteArray(destinationPath), "image/png", "Failed Step Screenshot");
+        System.out.println("screenshot is taken for failed scenario");
     }
 }
 

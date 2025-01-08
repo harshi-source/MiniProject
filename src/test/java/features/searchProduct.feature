@@ -8,3 +8,4 @@ Feature: Search and place the order for products
     Examples:
       |Name  |
       |Beet   |
+      |Tom    |

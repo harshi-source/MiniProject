@@ -5,7 +5,8 @@ import io.cucumber.testng.CucumberOptions;
 import org.testng.annotations.DataProvider;
 //we add cucumber adaptor plugin for generating extent reports, taken reference from https://extentreports.com/docs/versions/4/java/cucumber4.html
 @CucumberOptions(features = "src/test/java/features",glue = "stepDefinitions",monochrome = true,tags="@searchItem",
-plugin={"html:target/report.html","json:target/report.json","com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"})
+plugin={"html:target/report.html","json:target/report.json","com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:",
+"rerun:target/failed_scenarios.txt"})
 public class TestNGTestRunner extends AbstractTestNGCucumberTests {
 //when we run parallel,using TestNG, it will open multiple browsers at a time and executes all the test simultaneously
    @Override
